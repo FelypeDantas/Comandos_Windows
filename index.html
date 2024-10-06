@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos do Windows</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #e0e0e0; 
+            color: #333; 
+        }
+        h1 { text-align: center; color: #4A90E2; }
+        input { 
+            width: 98%; 
+            padding: 15px; 
+            border: 2px solid #4A90E2; 
+            border-radius: 5px; 
+            margin-bottom: 15px; 
+            font-size: 16px; 
+        }
+        ul { list-style-type: none; padding: 0; }
+        li { 
+            background: white; 
+            margin: 5px 0; 
+            padding: 15px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background 0.3s; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        }
+        li:hover { background: #f0f0f0; }
+        .details { 
+            margin-top: 20px; 
+            background: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        }
+        button { 
+            background: #4A90E2; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background 0.3s; 
+        }
+        button:hover { background: #357ABD; }
+    </style>
+</head>
+<body>
+    <h1>Comandos do Windows</h1>
+    <input type="text" id="search" placeholder="Digite o que você deseja...">
+    <ul id="suggestions"></ul>
+    <div class="details" id="details"></div>
+
+    <script>
+        const commands = {
+            'verificar integridade': { command: 'sfc', description: 'Verifica a integridade dos arquivos do sistema e restaura arquivos corrompidos.' },
+            'informações do sistema': { command: 'systeminfo', description: 'Exibe uma lista detalhada de informações sobre o sistema.' },
+            'desligar o computador em 60 segundos': { command: 'shutdown -s -t 60', description: 'Desliga o computador após 60 segundos.' },
+            'limpar cache DNS': { command: 'ipconfig /flushdns', description: 'Limpa o cache de resolução de DNS.' },
+            'forçar fechamento de um processo': { command: 'taskkill /f /im arquivo.exe', description: 'Força o fechamento de um processo específico.' },
+            'listar drivers instalados': { command: 'driverquery -v', description: 'Lista todos os drivers instalados e suas informações.' },
+            'copiar arquivos': { command: 'robocopy C:\\repository D:\\pasta', description: 'Copia arquivos e diretórios de um local para outro.' }
+        };
+
+        const input = document.getElementById('search');
+        const suggestionsList = document.getElementById('suggestions');
+        const detailsDiv = document.getElementById('details');
+
+        input.addEventListener('input', () => {
+            const query = input.value.toLowerCase();
+            suggestionsList.innerHTML = '';
+            detailsDiv.innerHTML = '';
+            for (const [description, { command, description: detail }] of Object.entries(commands)) {
+                if (description.includes(query)) {
+                    const li = document.createElement('li');
+                    li.textContent = `${description}: ${command}`;
+                    li.onclick = () => {
+                        detailsDiv.innerHTML = `<strong>Descrição:</strong> ${detail} <br><button onclick="copyToClipboard('${command}')">Copiar Comando</button>`;
+                    };
+                    suggestionsList.appendChild(li);
+                }
+            }
+        });
+
+        function copyToClipboard(command) {
+            navigator.clipboard.writeText(command).then(() => {
+                alert('Comando copiado: ' + command);
+            });
+        }
+    </script>
+</body>
+</html>
