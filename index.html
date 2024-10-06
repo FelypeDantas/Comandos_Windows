@@ -14,7 +14,7 @@
         }
         h1 { text-align: center; color: #4A90E2; }
         input { 
-            width: 98%; 
+            width: 100%; 
             padding: 15px; 
             border: 2px solid #4A90E2; 
             border-radius: 5px; 
@@ -65,7 +65,27 @@
             'limpar cache DNS': { command: 'ipconfig /flushdns', description: 'Limpa o cache de resolução de DNS.' },
             'forçar fechamento de um processo': { command: 'taskkill /f /im arquivo.exe', description: 'Força o fechamento de um processo específico.' },
             'listar drivers instalados': { command: 'driverquery -v', description: 'Lista todos os drivers instalados e suas informações.' },
-            'copiar arquivos': { command: 'robocopy C:\\repository D:\\pasta', description: 'Copia arquivos e diretórios de um local para outro.' }
+            'copiar arquivos': { command: 'robocopy C:\\repository D:\\pasta', description: 'Copia arquivos e diretórios de um local para outro.' },
+            'teste de conectividade': { command: 'ping [endereço]', description: 'Testa a conectividade com um endereço IP ou hostname.' },
+            'trazer rota dos pacotes': { command: 'tracert [endereço]', description: 'Mostra a rota que os pacotes seguem até um destino.' },
+            'exibir conexões': { command: 'netstat -an', description: 'Exibe todas as conexões e portas abertas.' },
+            'listar processos em execução': { command: 'tasklist', description: 'Lista todos os processos em execução.' },
+            'criar nova pasta': { command: 'mkdir [nome da pasta]', description: 'Cria uma nova pasta.' },
+            'remover pasta vazia': { command: 'rmdir [nome da pasta]', description: 'Remove uma pasta vazia.' },
+            'mudar diretório': { command: 'cd [caminho]', description: 'Altera o diretório de trabalho atual.' },
+            'copiar arquivos': { command: 'copy [origem] [destino]', description: 'Copia arquivos de um local para outro.' },
+            'excluir arquivo': { command: 'del [caminho do arquivo]', description: 'Exclui um arquivo.' },
+            'formatar disco': { command: 'format [unidade]:', description: 'Formata um disco.' },
+            'gerenciar discos': { command: 'diskpart', description: 'Gerencia discos, partições e volumes.' },
+            'reiniciar computador': { command: 'shutdown /r /t 0', description: 'Reinicia o computador imediatamente.' },
+            'exibir endereço MAC': { command: 'getmac', description: 'Exibe o endereço MAC da interface de rede.' },
+            'exibir usuário atual': { command: 'whoami', description: 'Exibe o nome do usuário atual.' },
+            'modificar associações de arquivo': { command: 'assoc', description: 'Exibe ou modifica associações de arquivo.' },
+            'exibir configuração IP': { command: 'ipconfig /all', description: 'Exibe todas as informações de configuração IP.' },
+            'listar programas instalados': { command: 'wmic product get name', description: 'Lista os programas instalados.' },
+            'listar usuários': { command: 'net user', description: 'Lista todos os usuários do sistema.' },
+            'verificar e reparar sistema': { command: 'sfc /scannow', description: 'Verifica e repara arquivos do sistema.' },
+            'verificar disco': { command: 'chkdsk [unidade]:', description: 'Verifica a integridade de um disco.' }
         };
 
         const input = document.getElementById('search');
@@ -96,3 +116,4 @@
     </script>
 </body>
 </html>
+
